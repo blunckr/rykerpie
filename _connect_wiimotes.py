@@ -1,11 +1,10 @@
+import os
 import re
 import subprocess
 import time
 
-from os import listdir
-
 def get_next_player_number():
-	devs = listdir('/dev/input')
+	devs = os.listdir('/dev/input')
 	js_matcher = re.compile('^js')
 	players = 1
 	for dev in devs:
@@ -18,6 +17,10 @@ def create_config_file(player):
 	template_file = open('/home/pi/rykerpie/gamepad')
 	content = template_file.read()
 	template_file.close()
+
+	tmp_dir = '/home/pi/rykerpie/tmp'
+	if not os.path.exists(tmp_dir):
+		os.makedirs(tmp_dir)
 
 	new_file = open('/home/pi/rykerpie/tmp/custom_gamepad' + player, 'w')
 	new_file.write(content)

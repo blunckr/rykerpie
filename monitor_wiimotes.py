@@ -11,7 +11,7 @@ def monitor_wiimotes():
 		else: 
 			failed_once = not running
 
-		time.sleep(2)
+		time.sleep(60)
 
 # if no emulators are running, kill wiimote connections
 def emulator_running():
